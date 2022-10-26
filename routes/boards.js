@@ -27,11 +27,11 @@ router.post ("/new", (req, res) => {
     const board = {
         id: req.query.board,
         settings: {
-            columns: 10,
-            rows: 10,
-            required: 5,
+            columns: req.query.columns,
+            rows: req.query.rows,
+            required: req.query.required,
             stepTime: 30,
-            maxPlayers: 2
+            maxPlayers: req.query.players
         },
         board: [],
         currentPlayerId: 1,

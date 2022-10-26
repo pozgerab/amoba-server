@@ -1,4 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+@keyframes dropdown {
+    from {height: 40px;
+        overflow: hidden;}
+    to {height: 200px;
+    overflow: visible;}
+  }
+body {
+    background-color: #234143;
+}
+
+body * {
+    margin: 10px;
+    color: aliceblue;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 #screen {
     position: relative;
     display: flex;
@@ -28,7 +49,6 @@ input {
     color: #ffffff;
     font-family: 'Rubik', sans-serif;
     text-decoration: none;
-    margin-left: 10px;
     border: none;
 }
 #start a {
@@ -36,7 +56,41 @@ input {
     font-family: 'Rubik', sans-serif;
     text-decoration: none;
     font-size: 40px;
-    margin-left: 10px;
+}
+
+#settings {
+    position: relative;
+    font-family: 'Rubik', sans-serif;
+    font-size: 30px;
+    background-color: #252634;
+    border-radius: 20px;
+    height: 40px;
+    text-align: left;
+    overflow: hidden;
+    transition: 1s ease;
+}
+
+.reveal {
+    height: 200px !important;
+}
+
+#dropdown {
+    margin: 0px;
+}
+
+#settings * {
+    margin-left: 20px;
+}
+
+#settings input {
+    width: 80px;
+    text-align: center;
+}
+
+#settings .nobr {
+    display: inline-block;
+    width: 80px;
+    font-size: 25px;
 }
 
 .break {
