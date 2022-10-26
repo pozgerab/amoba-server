@@ -119,7 +119,6 @@ router.post('/move', (req, res) => {
                         break;
                     }
                     let tile = board.board[checkedRow + element[0] * i ][checkedColumn + element[1] * i];
-                    console.log(tile);
                     if (tile == player.icon) {
                         correctTiles++;
                     }
