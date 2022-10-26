@@ -13,20 +13,21 @@ const playersBox = document.getElementById("players");
     settings: {
         columns: 3,
         rows: 3,
-        needed: 3,
+        required: 3,
         stepTime: 30,
         maxPlayers: 2
     },
     currentPlayerId: 1,
     playerAmount: 2,
     players: players,
-    moves: []}
+    moves: [],
+    hasWinner: false,
+    winner: undefined}
     */
 
 //let you = board.players.find(tag => {return tag.name == yourname});
 let board = JSON.parse(document.currentScript.getAttribute('game'));
 let yourname = document.currentScript.getAttribute('yourname');
-console.log(board);
 idBox.innerHTML = board.id;
 nameBox.innerHTML = yourname;
 let currentPlayer = board.players.find(tag => {return tag.gamerId == board.currentPlayerId});
@@ -73,6 +74,10 @@ async function turn(clickedTile) {
 async function reloadBoard() {
     
     board = await getData(`/boards/get?board=${board.id}`, {method:'GET', headers: {"Content-Type": "application/json"}});
+    if (board.hasWinner) {
+        window.alert(`${board.winner.name} has won!!`);
+        return;
+    }
     for (let i = 0; i < board.settings.columns; i++) {
         for (let j = 0; j < board.settings.rows; j++) {
             const element = document.createElement("button");
@@ -115,5 +120,7 @@ async function checkBoard() {
     }
 }
 checkBoard();
-
-console.log(getRes());
+/*async function cig() {
+    console.log(await getRes());
+}
+cig();*/

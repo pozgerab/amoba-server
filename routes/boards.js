@@ -26,21 +26,28 @@ router.get('/play', (req, res) => {
 router.post ("/new", (req, res) => {
     const board = {
         id: req.query.board,
-        board: [
-            [0,0,0],
-            [0,0,0],
-            [0,0,0]
-        ],
         settings: {
-            columns: 3,
-            rows: 3,
-            needed: 3,
+            columns: 10,
+            rows: 10,
+            required: 5,
             stepTime: 30,
             maxPlayers: 2
         },
+        board: [],
         currentPlayerId: 1,
         players: [],
-        moves: []
+        moves: [],
+        hasWinner: false,
+        winner: undefined
+    }
+
+    for (let i = 0; i < board.settings.rows; i++) {
+        board.board.push([]);
+        for (let j = 0; j < board.settings.columns; j++) {
+            board.board[i].push(0);
+
+        }
+        
     }
 
     boards.push(board);
@@ -70,6 +77,7 @@ router.post("/join", (req, res) => {
 });
 
 router.post('/move', (req, res) => {
+
     let board = boards.find((tag) => {return tag.id == req.query.board});
     let player = board.players.find((tag) => {return tag.name == req.query.player});
     if (board.board[parseInt(req.query.column)][parseInt(req.query.row)] != 0) {
@@ -86,6 +94,50 @@ router.post('/move', (req, res) => {
         playerId: board.currentPlayerId,
         tilePos: `${req.query.column};${req.query.row}`
     });
+
+
+    let directions = [
+        [0 , 1],
+        [1 , 1],
+        [1 , 0],
+        [-1 , 1]
+    ]
+
+    let required = board.settings.required;
+    let rows = board.settings.rows;
+    let columns = board.settings.columns;
+    //let tilesToCheck = rows * columns - (required-1) * (required-1);
+    //let currentTileNumber = 0;
+
+    for (let checkedRow = 0; checkedRow < rows-2; checkedRow++) {
+        for (let checkedColumn = 0; checkedColumn < columns-2; checkedColumn++) {
+            
+            directions.forEach(element => {
+                let correctTiles = 0;
+                for (let i = 0; i < rows; i++) {
+                    if (board.board[checkedRow + element[0] * i ] === undefined) {
+                        break;
+                    }
+                    let tile = board.board[checkedRow + element[0] * i ][checkedColumn + element[1] * i];
+                    console.log(tile);
+                    if (tile == player.icon) {
+                        correctTiles++;
+                    }
+                    if (correctTiles == required) {
+                        board.hasWinner = true;
+                        board.winner = player;
+                    }
+                    
+                }
+            });
+
+            
+
+        }
+        
+    }
+
+
     if (board.currentPlayerId != board.settings.maxPlayers) {
         board.currentPlayerId++;
     } else {
