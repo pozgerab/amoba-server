@@ -6,7 +6,7 @@ const username = document.getElementById("name");
 const rows = document.getElementById("rows");
 const columns = document.getElementById("columns");
 const players = document.getElementById("players");
-const required = document.getElementById("reqiured");
+const required = document.getElementById("required");
 const dropdown = document.getElementById("dropdown");
 const div = document.getElementById("settings");
 
