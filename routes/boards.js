@@ -27,11 +27,11 @@ router.post ("/new", (req, res) => {
     const board = {
         id: req.query.board,
         settings: {
-            columns: req.query.columns,
-            rows: req.query.rows,
-            required: req.query.required,
+            columns: parseInt(req.query.columns),
+            rows: parseInt(req.query.rows),
+            required: parseInt(req.query.required),
             stepTime: 30,
-            maxPlayers: req.query.players
+            maxPlayers: parseInt(req.query.players)
         },
         board: [],
         currentPlayerId: 1,
@@ -119,7 +119,6 @@ router.post('/move', (req, res) => {
                         break;
                     }
                     let tile = board.board[checkedRow + element[0] * i ][checkedColumn + element[1] * i];
-                    console.log(tile);
                     if (tile == player.icon) {
                         correctTiles++;
                     }
