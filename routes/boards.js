@@ -114,7 +114,7 @@ router.post('/move', (req, res) => {
             
             directions.forEach(element => {
                 let correctTiles = 0;
-                for (let i = 0; i < rows; i++) {
+                for (let i = 0; i < Math.max(rows,columns) + 1; i++) {
                     if (board.board[checkedRow + element[0] * i ] === undefined) {
                         break;
                     }
