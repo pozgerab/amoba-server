@@ -1,5 +1,7 @@
-const createBtn = document.getElementById("create");
-const joinBtn = document.getElementById("join");
+const createBtn = document.getElementById("createBtn");
+const joinBtn = document.getElementById("joinBtn");
+const createDiv = document.getElementById("create");
+const joinDiv = document.getElementById("join");
 const idInp = document.getElementById("id");
 const username = document.getElementById("name");
 
@@ -30,21 +32,21 @@ async function getData(url, headers) {
 let boardId;
 let link;
 
-createBtn.onmouseenter = () => {
+createDiv.onmouseenter = () => {
     boardId = Math.round(Math.random()*100);
     link = `/boards/new?board=${boardId}&columns=${columns.value}&rows=${rows.value}&required=${required.value}&players=${players.value}`;
-    createBtn.href = `/boards/play?board=${boardId}&player=${username.value}`;
 };
-createBtn.onclick = async () => {
+createDiv.onclick = async () => {
     await fetch(link, {method:'POST'});
     await fetch(`/boards/join?board=${boardId}&player=${username.value}`, {method:'POST'});
+    window.location = `/boards/play?board=${boardId}&player=${username.value}`;
 };
 
-joinBtn.onmouseenter = () => {
+joinDiv.onmouseenter = () => {
     boardId = idInp.value.toString();
-    joinBtn.href = `/boards/play?board=${boardId}&player=${username.value}`;
 };
 
-joinBtn.onclick = async () => {
+joinDiv.onclick = async () => {
     await fetch(`/boards/join?board=${boardId}&player=${username.value}`, {method:'POST'});
+    window.location = `/boards/play?board=${boardId}&player=${username.value}`;
 }

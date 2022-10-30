@@ -8,15 +8,29 @@
     <link rel="stylesheet" href="/main/style.css">
 </head>
 <body>
-    <div id="screen">
-        <div id="start">
-            <a href="" id="create">CREATE ROOM</a>
+    <div class="screen">
+        <div class="profile">
+            <div class="activated" id="profile-toggle"></div>
+            <div class="pfp">
+                <p id="pfp-index"></p>
+            </div>
+
+        </div>
+        <div id="start" class="tab">
+            <div id="create" class="btn">
+                <img src="/images/create_icon.png" class="icon" alt="">
+                <p id="createBtn">CREATE ROOM</a>
+            </div>
             <br>
-            <a href="" id="join">JOIN ROOM</a>
-            <input type="number" id="id" placeholder="Room id">
+            <div id="join" class="btn">
+                <img src="/images/join_icon.png" class="icon" alt="" >
+                <p id="joinBtn">JOIN ROOM</a>
+            </div>
             <br>
+        </div>
+        <div class="tab">
             <input type="text" id="name" placeholder="Your name">
-            <div id="settings">
+            <div id="settings-create">
                 <p id="dropdown">Settings</p>
                 <p class="nobr">Rows</p>
                 <input type="number" value="3" id="rows" placeholder="Rows">
@@ -27,6 +41,9 @@
                 <input type="number" value="2" id="players" placeholder="Players">
                 <p class="nobr">Required</p>
                 <input type="number" value="3" id="required" placeholder="Required"><br>
+            </div>
+            <div id="settings-join">
+                <input type="number" id="id" placeholder="Room id">
             </div>
         </div>
     </div>
