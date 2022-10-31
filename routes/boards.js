@@ -109,13 +109,19 @@ router.post('/move', (req, res) => {
     //let tilesToCheck = rows * columns - (required-1) * (required-1);
     //let currentTileNumber = 0;
 
-    for (let checkedRow = 0; checkedRow < rows-2; checkedRow++) {
-        for (let checkedColumn = 0; checkedColumn < columns-2; checkedColumn++) {
+    //CSAK AZ ELSŐ OSZLOPOT ELLENŐRZI LE!!!! MEG KELL JAVÍTANI
+
+    for (let checkedRow = 0; checkedRow < rows; checkedRow++) {
+        for (let checkedColumn = 0; checkedColumn < columns; checkedColumn++) {
+
+            if (checkedRow > rows-(required-1) && checkedColumn > columns-(required-1)) {
+                continue;
+            }
             
             directions.forEach(element => {
                 let correctTiles = 0;
                 for (let i = 0; i < Math.max(rows,columns) + 1; i++) {
-                    if (board.board[checkedRow + element[0] * i ] === undefined) {
+                    if (board.board[checkedRow + element[0] * i ] == undefined) {
                         break;
                     }
                     let tile = board.board[checkedRow + element[0] * i ][checkedColumn + element[1] * i];
@@ -125,13 +131,10 @@ router.post('/move', (req, res) => {
                     if (correctTiles == required) {
                         board.hasWinner = true;
                         board.winner = player;
-                    }
-                    
+                        break;
+                    }                    
                 }
             });
-
-            
-
         }
         
     }
