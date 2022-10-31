@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
-@keyframes dropdown {
-    from {height: 40px;
-        overflow: hidden;}
-    to {height: 200px;
-    overflow: visible;}
-  }
+@keyframes scale_up {
+    from {
+        transform: scale(1,1);
+        background-color: #161925;}
+    to {
+        transform: scale(1.13,1.13);
+        background-color: #234143;}
+}
 
 body html {
     height: 100%;
@@ -21,6 +23,7 @@ body {
 body *:not(br) {
     margin: 10px;
     color: aliceblue;
+    font-family: 'Rubik', sans-serif;
 }
 
 #start, .profile {
@@ -42,12 +45,6 @@ input::-webkit-inner-spin-button {
     display: flexbox;
 }
 
-.profile:has(.activated) {
-    width: 300px;
-    height: 95vh;
-    overflow: hidden;
-}
-
 .pfp {
     background-color: #234143;
     width: 30%;
@@ -58,27 +55,26 @@ input::-webkit-inner-spin-button {
     justify-content: center;
 }
 
-.tab {
+.tab, .profile:has(.activated) {
     align-content: center;
     background-color: #161925;
     border-radius: 40px;
-    height: 95vh;
+    height: 93vh;
     display: inline-block;
     flex-direction: column;
     justify-content:left;
-    width: 500px;
+    width: 550px;
+}
+
+.profile:has(.activated) {
+    width: 300px;
+    overflow: hidden;
 }
 
 #start {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-#create {
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .icon {
@@ -97,17 +93,6 @@ input::-webkit-inner-spin-button {
     margin: 0px;
 } 
 
-#id {
-    width: max-content;
-    margin: 5px;
-}
-
-.join {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
 input {
     background-color: #453249;
     width: 95%;
@@ -119,6 +104,7 @@ input {
     text-decoration: none;
     border: none;
 }
+
 #start p {
     color: #ffffff;
     font-family: 'Rubik', sans-serif;
@@ -126,34 +112,38 @@ input {
     font-size: 40px;
 }
 
-#settings-create {
+.settings-container, .settings-container-all {
     position: relative;
     font-family: 'Rubik', sans-serif;
     font-size: 30px;
     background-color: #252634;
     border-radius: 20px;
-    height: 200px;
+    height: 0;
     text-align: left;
-    visibility: visible;
-    transition: ease 1s;
+    visibility: hidden;
 }
 
-#dropdown {
+.settings-container-all {
+    height: 0px;
+    visibility: hidden;
+}
+
+.dropdown {
     margin: 0px;
 }
 
-#settings-create * {
+.settings-container * {
     margin-left: 20px;
 }
 
-#settings-create input {
+.settings-container input {
     width: 80px;
     text-align: center;
 }
 
-#settings-create .nobr {
+.settings-container .nobr {
     display: inline-block;
-    width: 80px;
+    width: 100px;
     font-size: 25px;
 }
 
@@ -164,4 +154,19 @@ input {
 
 .btn {
     cursor: pointer;
+    height: 500px;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn:hover {
+    animation: scale_up 0.4s running;
+    transform: scale(1.13,1.13);
+    background-color: #234143;
 }

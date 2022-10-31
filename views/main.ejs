@@ -29,21 +29,26 @@
             <br>
         </div>
         <div class="tab">
-            <input type="text" id="name" placeholder="Your name">
-            <div id="settings-create">
-                <p id="dropdown">Settings</p>
+            <div class="settings-container-all" id="nameDiv">
+                <p class="nobr">Username</p>
+                <input type="text" id="name" placeholder="Your name" maxlength="16">
+            </div>
+            <div id="settings-create" class="settings-container">
+                <p class="dropdown">Settings ― Create</p>
                 <p class="nobr">Rows</p>
-                <input type="number" value="3" id="rows" placeholder="Rows">
+                <input type="number" value="3" id="rows" placeholder="">
                 <p class="nobr">Columns</p>
-                <input type="number" value="3" id="columns" placeholder="Columns"><br>
+                <input type="number" value="3" id="columns" placeholder=""><br>
                 <div class="break"></div>
                 <p class="nobr">Players</p>
-                <input type="number" value="2" id="players" placeholder="Players">
+                <input type="number" value="2" id="players" placeholder="">
                 <p class="nobr">Required</p>
-                <input type="number" value="3" id="required" placeholder="Required"><br>
+                <input type="number" value="3" id="required" placeholder=""><br>
             </div>
-            <div id="settings-join">
-                <input type="number" id="id" placeholder="Room id">
+            <div id="settings-join" class="settings-container">
+                <p class="dropdown">Settings ― Join</p>
+                <p class="nobr">Room id</p>
+                <input type="number" id="id" placeholder="">
             </div>
         </div>
     </div>

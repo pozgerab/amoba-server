@@ -106,10 +106,6 @@ router.post('/move', (req, res) => {
     let required = board.settings.required;
     let rows = board.settings.rows;
     let columns = board.settings.columns;
-    //let tilesToCheck = rows * columns - (required-1) * (required-1);
-    //let currentTileNumber = 0;
-
-    //CSAK AZ ELSŐ OSZLOPOT ELLENŐRZI LE!!!! MEG KELL JAVÍTANI
 
     for (let checkedRow = 0; checkedRow < rows; checkedRow++) {
         for (let checkedColumn = 0; checkedColumn < columns; checkedColumn++) {
